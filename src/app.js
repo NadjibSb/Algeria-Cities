@@ -1,9 +1,24 @@
-var express = require('express');
+const express = require('express');
+const loaders = require('./config/loader');
+const config = require('./config');
+const routes = require('./routes');
 
-var app = express();
 
-app.get("/", function(req,res){
-    res.json("test");
-});
+async function startServer() {
 
-app.listen(3300);
+    const app = express();
+
+    loaders(app);
+    app.use('/',routes);
+
+
+    app.listen(config.PORT, err => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(`Your server is ready !`);
+    });
+}
+
+startServer();
