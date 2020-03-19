@@ -18,7 +18,6 @@ async function startServer() {
             return;
         }
         console.log(`Your server is ready !`);
-        
         ctrl.reset();
     });
 }
